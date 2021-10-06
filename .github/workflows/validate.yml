@@ -1,0 +1,13 @@
+name: validate
+
+on: pull_request
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install jsonlint
+        run:  sudo apt-get update && DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends jsonlint
+      - uses: actions/checkout@v2
+      - name: Validate JSON
+        run: ./validate.sh
